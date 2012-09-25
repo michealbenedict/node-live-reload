@@ -13,7 +13,8 @@ var options
   , emitter
 
   , port
-  , dir;
+  , dir
+  , timeout;
 
 emitter = new Emitter;
 
@@ -43,7 +44,10 @@ watchr.watch({
   path: dir
 , listener: function( eventName, filePath, fileCurrentStat, filePreviousStat ){
     if ( !fileRegex.test(filePath) ) return;
-    emitter.emit('reload');
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      emitter.emit('reload');
+    }, 500);
   }
 , ignoreHiddenFiles: true
 , ignorePatterns: true
