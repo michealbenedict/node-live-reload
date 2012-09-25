@@ -1,7 +1,7 @@
 {
   "name": "nbr",
   "version": "0.0.1",
-  "description": "Simple Nodejs powered browser live reload on file save",
+  "description": "A quick nodejs + socket powered browser reloader for all your frontend dev needs.",
   "main": "main.js",
   "dependencies": {
     "nopt": "~2.0.0",
@@ -10,12 +10,12 @@
   },
   "engines": { "node": ">= 0.8.0" },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "",
-  "author": "Micheal Benedict Arul [@micheal]",
-  "license": "BSD",
+  "author": "Micheal Benedict [@micheal]",
+  "licenses": [ { "type": "MIT", "url": "http://opensource.org/licenses/MIT" } ],
   "bin": { "nbr": "bin/nbr" },
-  "preferGlobal": true
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/rowoot/node-live-reload.git"
+  }
 }

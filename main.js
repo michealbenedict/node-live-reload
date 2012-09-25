@@ -52,6 +52,7 @@ watchr.watch({
 wss.on('connection', function ( ws ) {
   emitter.once('reload', function () {
     ws.send(JSON.stringify({r: Date.now().toString()}), function (e) {
+      if ( !e ) { return }
       console.log(e);
     });
   });
