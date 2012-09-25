@@ -7,7 +7,7 @@ A quick nodejs + socket powered browser reloader for all your frontend dev needs
 1. Install via npm `npm install -g nbr` (Make sure to install it globally)
 2. Add the following js to your project
 
-````js
+````html
 <!-- Make sure to remove this in production -->
 <!-- include it above the </body> tag -->
 <script src='http://code.jquery.com/jquery-1.8.2.min.js'></script>
