@@ -1,6 +1,6 @@
 var nopt    = require('nopt')
   , WS      = require('ws').Server
-  , wss     = new WS({port: 8080})
+  , wss
   , Emitter = require('events').EventEmitter
   , watchr  = require('watchr')
   , path    = require('path');
@@ -10,7 +10,10 @@ var options
   , shorthands
   , command
   , fileRegex
-  , emitter;
+  , emitter
+
+  , port
+  , dir;
 
 emitter = new Emitter;
 
@@ -18,7 +21,7 @@ fileRegex = /\.(html|erb|css|js)$/i;
 
 knownOpts = { 
   'path' : path
-, 'port' : [Number, 8080]
+, 'port' : [Number]
 };
 shortHands  = { 
   'd' : ['--path']
@@ -31,8 +34,13 @@ options = nopt(knownOpts, shorthands, process.argv, 2);
 
 command = options.argv.remain && options.argv.remain.shift();
 
+port = options.port || 8080;
+dir = options.path || process.cwd();
+
+wss = new WS({ port: port });
+
 watchr.watch({
-  path: options.path || process.cwd()
+  path: dir
 , listener: function( eventName, filePath, fileCurrentStat, filePreviousStat ){
     if ( !fileRegex.test(filePath) ) return;
     emitter.emit('reload');
@@ -42,14 +50,11 @@ watchr.watch({
 });
 
 wss.on('connection', function ( ws ) {
-  try {
-    emitter.once('reload', function () {
-      ws.send('r');
+  emitter.once('reload', function () {
+    ws.send(JSON.stringify({r: Date.now().toString()}), function (e) {
+      console.log(e);
     });
-  }
-  catch (e) {
-    console.log(e);
-  }
+  });
 });
 
-console.log('started watching on 127.0.0.1:8080');
+console.log('started watching on 127.0.0.1:' + port + ' on ' + dir);
