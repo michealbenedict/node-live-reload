@@ -1,0 +1,21 @@
+{
+  "name": "nbr",
+  "version": "0.0.1",
+  "description": "Simple Nodejs powered browser live reload on file save",
+  "main": "main.js",
+  "dependencies": {
+    "nopt": "~2.0.0",
+    "watchr": "~2.1.3",
+    "ws": "~0.4.21"
+  },
+  "engines": { "node": ">= 0.8.0" },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Micheal Benedict Arul [@micheal]",
+  "license": "BSD",
+  "bin": { "nbr": "bin/nbr" },
+  "preferGlobal": true
+}
