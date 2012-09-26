@@ -37,3 +37,9 @@ $(function() {
 ````
 
 3. Run `nbr` from your project directory to start watching for files
+
+#### Options
+
+````
+$ nbr --port 9000 --path /some/other/path/to/watch
+````

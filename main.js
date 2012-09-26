@@ -22,18 +22,14 @@ fileRegex = /\.(html|erb|css|js)$/i;
 
 knownOpts = { 
   'path' : path
-, 'port' : [Number]
+, 'port' : Number
 };
 shortHands  = { 
-  'd' : ['--path']
-, 'p' : ['--port']
+  'd' : '--path'
+, 'p' : '--port'
 };
 
-process.title = 'node-browser-reloader';
-
 options = nopt(knownOpts, shorthands, process.argv, 2);
-
-command = options.argv.remain && options.argv.remain.shift();
 
 port = options.port || 8080;
 dir = options.path || process.cwd();
