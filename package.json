@@ -1,18 +1,18 @@
 {
-  "name": "nbr",
-  "version": "0.0.1",
+  "name": "node-live-reload",
+  "version": "0.0.2",
   "description": "A quick nodejs + socket powered browser reloader for all your frontend dev needs.",
-  "main": "main.js",
+  "main": "lib",
   "dependencies": {
     "nopt": "~2.0.0",
-    "watchr": "~2.1.3",
+    "fs.notify": "latest",
     "ws": "~0.4.21"
   },
   "engines": { "node": ">= 0.8.0" },
   "devDependencies": {},
   "author": "Micheal Benedict [@micheal]",
   "licenses": [ { "type": "MIT", "url": "http://opensource.org/licenses/MIT" } ],
-  "bin": { "nbr": "bin/nbr" },
+  "bin": { "node-live-reload": "bin/node-live-reload" },
   "preferGlobal": true,
   "repository": {
     "type": "git",

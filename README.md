@@ -1,45 +1,45 @@
-## Node Browser Reloader
+## Node Live Reload 0.2
 
 A quick nodejs + socket powered browser reloader for all your frontend dev needs.
 
 ### Usage
 
-1. Install via npm `npm install -g nbr` (Make sure to install it globally)
+1. Install via npm `npm install -g node-live-reload` (Make sure to install it globally)
 2. Add the following js to your project
 
 ````html
 <!-- Make sure to remove this in production -->
 <!-- include it above the </body> tag -->
-<script src='http://code.jquery.com/jquery-1.8.2.min.js'></script>
-<script src='https://raw.github.com/flowersinthesand/jquery-socket/master/jquery.socket.js'></script>
 <script>
-$(function() {
-  $.socket.defaults.transports = ["ws"];
-  $.socket("ws://127.0.0.1:8080", {
-    prepare: function( connect ) {
-      connect()
+var ws;
+function socket() {
+  ws = new WebSocket("ws://127.0.0.1:8080");
+  ws.onmessage = function ( e ) {
+    var data = JSON.parse(e.data);
+    if ( data.r ) {
+      location.reload();
     }
-  , inbound: function(data) {
-      if (data === "h") {
-          return {type: "heartbeat"};
-      }
-      data = JSON.parse(data);
-      if ( data.r ) {
-        $.socket.finalize();
-        location.reload();
-      }
-      return data;
+  };
+}
+setInterval(function () {
+  if ( ws ) {
+    if ( ws.readyState !== 1 ) {
+      socket();
     }
-  })
-});
+  } else {
+    socket();
+  }
+}, 1000);
 </script>
 
 ````
 
-3. Run `nbr` from your project directory to start watching for files
+3. Run `node-live-reload` from your project directory to start watching for files in 
+the directory it is being run from
 
 #### Options
 
 ````
-$ nbr --port 9000 --path /some/other/path/to/watch
+$ node-live-reload --port 9000 --path /some/other/path/to/watch
+$ node-live-reload -p 9000 -d /some/other/path/to/watch
 ````
