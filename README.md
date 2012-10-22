@@ -1,4 +1,4 @@
-## Node Live Reload 0.2
+## Node Live Reload 0.3
 
 A quick nodejs + socket powered browser reloader for all your frontend dev needs.
 
@@ -42,4 +42,10 @@ the directory it is being run from
 ````
 $ node-live-reload --port 9000 --path /some/other/path/to/watch
 $ node-live-reload -p 9000 -d /some/other/path/to/watch
+````
+
+#### Watch Multiple paths
+
+````
+$ node-live-reload -d /some/other/path/to/watch -d /some/other/path/to/watch2
 ````
